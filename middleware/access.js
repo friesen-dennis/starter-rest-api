@@ -40,7 +40,7 @@ const access = async (req, res, next) => {
         shakyName.toLowerCase() ===
           response.data.country.split(" ").join("").toLowerCase()
       ) {
-        req.landmass = decryptedData.landmass;
+        req.zombie = decryptedData.zombie;
         next();
       }
     });

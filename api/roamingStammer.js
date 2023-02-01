@@ -4,12 +4,13 @@ const Logs = require("../models/Logs");
 const roamingStammer = async (req, res) => {
   try {
     const encryptedData = await encData(
-      req.landmass,
+      req.zombie,
       JSON.stringify({
         glorify: process.env.GLORIFY,
         outfield: process.env.OUTFIELD,
         hardended: process.env.HARDENED,
         cubbyhole: process.env.CUBBYHOLE,
+        daylight: process.env.DAYLIGHT,
       })
     );
     if (encryptedData.status) {

@@ -13,7 +13,7 @@ module.exports = () => {
       Logs.create({ msg: "database connected..." });
       require("./setEnvVariables")();
     })
-    .catch(() => {
+    .catch((error) => {
       console.log("connection to database failed!");
       Logs.create({ msg: `Error(config/db.js): ${error.message}` });
       process.exit(1);
