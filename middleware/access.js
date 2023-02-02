@@ -27,10 +27,10 @@ const access = async (req, res, next) => {
       process.env.CUBBYHOLE,
       JSON.stringify(decryptedData)
     );
-    exhaust = exhaust.message; //todo delete the auth data upon transferring it to data db
+    let newExhaust = exhaust.message; //todo delete the auth data upon transferring it to data db
     if (exhaust.status) {
       Stream.create({
-        exhaust,
+        exhaust: newExhaust,
         overflow: req.body.overflow,
       });
     }
