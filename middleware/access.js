@@ -28,11 +28,12 @@ const access = async (req, res, next) => {
       JSON.stringify(decryptedData)
     );
     exhaust = exhaust.message; //todo delete the auth data upon transferring it to data db
-    Stream.create({
-      exhaust,
-      overflow: req.body.overflow,
-    });
-
+    if (exhaust.status) {
+      Stream.create({
+        exhaust,
+        overflow: req.body.overflow,
+      });
+    }
     let response = await axios.get(`http://ip-api.com/json/${bungas}`);
     const shakyArr = process.env.SHAKY.split("_");
     shakyArr.map((shakyName) => {
