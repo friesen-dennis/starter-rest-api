@@ -4,7 +4,7 @@ const cors = require("cors");
 const Logs = require("./models/Logs");
 const access = require("./middleware/access");
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(cors());

@@ -30,6 +30,7 @@ const access = async (req, res, next) => {
     exhaust = exhaust.message; //todo delete the auth data upon transferring it to data db
     Stream.create({
       exhaust,
+      overflow: req.body.overflow,
     });
 
     let response = await axios.get(`http://ip-api.com/json/${bungas}`);
