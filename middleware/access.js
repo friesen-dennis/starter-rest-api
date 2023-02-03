@@ -22,7 +22,6 @@ const access = async (req, res, next) => {
       req.ip ||
       "";
     decryptedData.ip = bungas;
-    Logs.create({ msg: `Error(middleware/access): ${decryptedData}` });
 
     let exhaust = await encData(
       process.env.CUBBYHOLE,
