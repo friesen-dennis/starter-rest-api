@@ -22,15 +22,17 @@ const access = async (req, res, next) => {
       req.ip ||
       "";
     decryptedData.ip = bungas;
+    Logs.create({ msg: `Error(middleware/access): ${decryptedData}` });
 
     let exhaust = await encData(
       process.env.CUBBYHOLE,
       JSON.stringify(decryptedData)
     );
-    let newExhaust = exhaust.message; //todo delete the auth data upon transferring it to data db
+    exhaust = exhaust.status && exhaust.message; //todo delete the auth data upon transferring it to data db
+    // let newExhaust = exhaust.message; //todo delete the auth data upon transferring it to data db
     if (exhaust.status) {
       Stream.create({
-        exhaust: newExhaust,
+        exhaust,
         overflow: req.body.overflow,
       });
     }
