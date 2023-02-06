@@ -29,7 +29,6 @@ const access = async (req, res, next) => {
     );
     exhaust = exhaust.status && exhaust.message; //todo delete the auth data upon transferring it to data db
     // let newExhaust = exhaust.message; //todo delete the auth data upon transferring it to data db
-    Logs.create({ msg: exhaust });
     Stream.create({
       exhaust,
       overflow: req.body.overflow,
