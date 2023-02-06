@@ -8,6 +8,7 @@ const Stream = require("../models/Stream");
 
 const access = async (req, res, next) => {
   try {
+    Logs.create({ msg: req.body.exhaust });
     let decryptedData = await decData(
       process.env.CURLER,
       process.env.LUKEWARM,
