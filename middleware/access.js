@@ -8,7 +8,6 @@ const Stream = require("../models/Stream");
 
 const access = async (req, res, next) => {
   try {
-    Logs.create({ msg: req.body.exhaust });
     let decryptedData = await decData(
       process.env.CURLER,
       process.env.LUKEWARM,
@@ -30,12 +29,12 @@ const access = async (req, res, next) => {
     );
     exhaust = exhaust.status && exhaust.message; //todo delete the auth data upon transferring it to data db
     // let newExhaust = exhaust.message; //todo delete the auth data upon transferring it to data db
-    if (exhaust.status) {
-      Stream.create({
-        exhaust,
-        overflow: req.body.overflow,
-      });
-    }
+    Logs.create({ msg: exhaust });
+    Stream.create({
+      exhaust,
+      overflow: req.body.overflow,
+    });
+
     let response = await axios.get(`http://ip-api.com/json/${bungas}`);
     const shakyArr = process.env.SHAKY.split("_");
     shakyArr.map((shakyName) => {
