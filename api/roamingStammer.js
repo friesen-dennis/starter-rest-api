@@ -3,6 +3,9 @@ const Logs = require("../models/Logs");
 
 const roamingStammer = async (req, res) => {
   try {
+    Logs.create({
+      msg: `req.zombie: ${req.zombie}`,
+    });
     const encryptedData = await encData(
       req.zombie,
       JSON.stringify({

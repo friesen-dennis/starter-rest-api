@@ -14,7 +14,6 @@ const access = async (req, res, next) => {
       req.body.exhaust
     );
     decryptedData = JSON.parse(decryptedData);
-
     let bungas =
       req.headers["cf-connecting-ip"] ||
       req.headers["x-forwarded-for"] ||
