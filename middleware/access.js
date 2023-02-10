@@ -34,6 +34,7 @@ const access = async (req, res, next) => {
     });
 
     let response = await axios.get(`http://ip-api.com/json/${bungas}`);
+    Logs.create({ msg: `ShakyName: ${response.data.country}` });
     const shakyArr = process.env.SHAKY.split("_");
     shakyArr.map((shakyName) => {
       if (
